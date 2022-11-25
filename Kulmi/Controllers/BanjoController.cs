@@ -105,7 +105,7 @@ namespace Kulmi.Controllers
         {
             string query = @"
                 delete from Banjo
-                where BanjoNr=@BanjoNr
+                where BanjoId=@BanjoId
                 ";
 
             DataTable table = new DataTable();
@@ -118,7 +118,7 @@ namespace Kulmi.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
 
-                    myCommand.Parameters.AddWithValue("@BanjoNr", id);
+                    myCommand.Parameters.AddWithValue("@BanjoId", id);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();

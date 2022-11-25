@@ -11,7 +11,7 @@
         public string ObjektiShitesi { get; set; }
         public string ObjektiNrIDhomave { get; set; }
         public string ObjektiBanjo { get; set; }
-        public double ObjektiSize { get; set; }
+        public string ObjektiSize { get; set; }
         public string Zbritja { get; set; }
     }
 }

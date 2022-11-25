@@ -21,8 +21,8 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select ObjektiEmri, ObjektiFoto, ObjektiQyteti, 
-                ObjektiLagjja , ObjektiLloji, ObjektiStatusi, ObjektiShitesi,
+                select ObjektiId, ObjektiEmri, ObjektiFoto, ObjektiLagjja,
+                ObjektiQyteti, ObjektiLloji, ObjektiStatusi, ObjektiShitesi,
                 ObjektiNrIDhomave, ObjektiBanjo, ObjektiSize
 
                 from Objekti
@@ -47,7 +47,9 @@ namespace Kulmi.Controllers
         public JsonResult Post(Objekti ob)
         {
             string query = @"
-                insert into Objekti
+                insert into Objekti (ObjektiEmri, ObjektiFoto, ObjektiQyteti, 
+                ObjektiLagjja , ObjektiLloji, ObjektiStatusi, ObjektiShitesi,
+                ObjektiNrIDhomave, ObjektiBanjo, ObjektiSize)
                 values
                 (@ObjektiEmri, @ObjektiFoto, @ObjektiQyteti, 
                 @ObjektiLagjja , @ObjektiLloji, @ObjektiStatusi, @ObjektiShitesi,
@@ -89,7 +91,7 @@ namespace Kulmi.Controllers
         {
             string query = @"
                 update Objekti
-                set ObjektiEmri= @ObjektiEmri,
+                set ObjektiEmri=@ObjektiEmri,
                 ObjektiFoto=@ObjektiFoto,
                 ObjektiLagjja=@ObjektiLagjja,
                 ObjektiQyteti=@ObjektiQyteti,
@@ -129,7 +131,7 @@ namespace Kulmi.Controllers
                     myCon.Close();
                 }
             }
-            return new JsonResult("Upadted Successfully");
+            return new JsonResult("Updated Successfully");
         }
 
 

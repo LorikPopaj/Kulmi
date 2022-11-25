@@ -44,7 +44,7 @@ namespace Kulmi.Controllers
         public JsonResult Post(Qyteti qt)
         {
             string query = @"
-                insert into Qyteti
+                insert into Qyteti (QytetiName)
                 values (@QytetiName)
             ";
 

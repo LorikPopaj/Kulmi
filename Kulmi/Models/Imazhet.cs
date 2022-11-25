@@ -2,7 +2,7 @@
 {
     public class Imazhet
     {
-        public int ImazhetId { get; set; }
+        public int ImazhiId { get; set; }
         public string Objekti { get; set; }
         public string Imazhi { get; set; }  
     }

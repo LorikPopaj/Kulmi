@@ -74,8 +74,8 @@ namespace Kulmi.Controllers
         {
             string query = @"
                 update Statusi
-                set StatusiObjekti= @StatusiObjekti,
-                StatusiObjekti=@StatusiObjekti
+                set StatusiObjekti= @StatusiObjekti
+                
               
                 where StatusiId=@StatusiId
             ";

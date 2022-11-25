@@ -21,7 +21,7 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select KolonaIcon, KolonaTitle, 
+                select KolonatId, KolonaIcon, KolonaTitle, 
                 KolonaDesc
 
                 from Kolonat
@@ -46,7 +46,8 @@ namespace Kulmi.Controllers
         public JsonResult Post(Kolonat ko)
         {
             string query = @"
-                insert into Kolonat
+                insert into Kolonat (KolonaIcon, KolonaTitle, 
+                KolonaDesc)
                 values
                 (@KolonaIcon, @KolonaTitle, 
                 @KolonaDesc )
@@ -81,7 +82,7 @@ namespace Kulmi.Controllers
         public JsonResult Put(Kolonat ko)
         {
             string query = @"
-                update Kolonat
+                update Kolonat 
                 set
                 KolonaIcon=@KolonaIcon,
                 KolonaTitle=@KolonaTitle,

@@ -19,7 +19,7 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select LagjjaId, LagjjaiName, QytetiName
+                select LagjjaId, LagjjaName, QytetiName
             
 
                 from Lagjja
@@ -44,7 +44,7 @@ namespace Kulmi.Controllers
         public JsonResult Post(Lagjja lg)
         {
             string query = @"
-                insert into Lagjja
+                insert into Lagjja (LagjjaName, QytetiName)
                 values
                 (@LagjjaName, @QytetiName )
                                                        ";

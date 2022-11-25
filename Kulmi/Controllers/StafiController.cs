@@ -21,7 +21,7 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select StafiFoto, StafiFoto,StafiRole,StafiInfo
+                select StafiId, StafiName, StafiFoto, StafiRole, StafiInfo
 
                 from Stafi
             ";
@@ -45,7 +45,7 @@ namespace Kulmi.Controllers
         public JsonResult Post(Stafi st)
         {
             string query = @"
-                insert into Stafi
+                insert into Stafi (StafiName, StafiFoto,StafiRole ,StafiInfo)
                 values
                 (@StafiName, @StafiFoto,@StafiRole ,@StafiInfo )
                                                                                 ";
@@ -81,10 +81,10 @@ namespace Kulmi.Controllers
         public JsonResult Put(Stafi st)
         {
             string query = @"
-                update Stafi
+                update Stafi 
                 set
-                StafiName=@StafiName,
                 StafiFoto=@StafiFoto,
+                StafiName=@StafiName,
                 StafiRole=@StafiRole,
                 StafiInfo=@StafiInfo
 
@@ -105,16 +105,13 @@ namespace Kulmi.Controllers
                     myCommand.Parameters.AddWithValue("@StafiFoto", st.StafiFoto);
                     myCommand.Parameters.AddWithValue("@StafiRole", st.StafiRole);
                     myCommand.Parameters.AddWithValue("@StafiInfo", st.StafiInfo);
-
-
-
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
                     myCon.Close();
                 }
             }
-            return new JsonResult("Upadted Successfully");
+            return new JsonResult("Updated Successfully");
         }
 
 

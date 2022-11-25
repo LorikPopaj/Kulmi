@@ -21,7 +21,7 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select Objekti, Imazhi
+                select ImazhiId, Objekti, Imazhi
 
                 from Imazhet
             ";
@@ -45,7 +45,7 @@ namespace Kulmi.Controllers
         public JsonResult Post(Imazhet im)
         {
             string query = @"
-                insert into Imazhet
+                insert into Imazhet(Objekti, Imazhi)
                 values
                 (@Objekti, @Imazhi )
                                                                                 ";
@@ -74,19 +74,17 @@ namespace Kulmi.Controllers
             }
             return new JsonResult("Added Successfully");
         }
-
         [HttpPut]
         public JsonResult Put(Imazhet im)
         {
             string query = @"
                 update Imazhet
-                set
+                set 
                 Objekti=@Objekti,
                 Imazhi=@Imazhi
                 
-               
-
-                where ImazhetId=@ImazhetId
+              
+                where ImazhiId=@ImazhiId
             ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("DefaultConnection");
@@ -97,19 +95,16 @@ namespace Kulmi.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
 
-                    myCommand.Parameters.AddWithValue("@ImazhetId", im.ImazhetId);
+                    myCommand.Parameters.AddWithValue("@ImazhiId", im.ImazhiId);
                     myCommand.Parameters.AddWithValue("@Objekti", im.Objekti);
                     myCommand.Parameters.AddWithValue("@Imazhi", im.Imazhi);
-
-
-
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
                     myCon.Close();
                 }
             }
-            return new JsonResult("Upadted Successfully");
+            return new JsonResult("Updated Successfully");
         }
 
 
@@ -118,7 +113,7 @@ namespace Kulmi.Controllers
         {
             string query = @"
                 delete from Imazhet
-                where ImazhetId=@ImazhetId
+                where ImazhiId=@ImazhiId
     ";
 
             DataTable table = new DataTable();
@@ -131,7 +126,7 @@ namespace Kulmi.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
 
-                    myCommand.Parameters.AddWithValue("@ImazhetId", id);
+                    myCommand.Parameters.AddWithValue("@ImazhiId", id);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();

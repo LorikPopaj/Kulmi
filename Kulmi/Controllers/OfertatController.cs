@@ -21,7 +21,7 @@ namespace Kulmi.Controllers
         public JsonResult Get()
         {
             string query = @"
-                select ObjektiFoto, ObjektiQyteti, 
+                select ObjektiId, ObjektiFoto, ObjektiQyteti, 
                 ObjektiLagjja , ObjektiLloji, ObjektiStatusi, ObjektiShitesi,
                 ObjektiNrIDhomave, ObjektiBanjo, ObjektiSize, Zbritja
 

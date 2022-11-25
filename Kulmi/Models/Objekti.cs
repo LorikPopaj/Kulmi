@@ -4,7 +4,6 @@
     {
         public int ObjektiId { get; set; }
         public string ObjektiEmri { get; set; }
-        public string Qyteti { get; set; }
         public string ObjektiFoto { get; set; }
         public string ObjektiLagjja { get; set; }
         public string ObjektiQyteti { get; set; }
@@ -13,7 +12,7 @@
         public string ObjektiShitesi { get; set; }
         public string ObjektiNrIDhomave { get; set; }
         public string ObjektiBanjo { get; set; }
-        public double ObjektiSize { get; set; }
+        public string ObjektiSize { get; set; }
     
     }
 }

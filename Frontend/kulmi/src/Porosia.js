@@ -1,34 +1,44 @@
 import React,{Component} from "react";
 import { variables } from "./Variables";
 
-export class Qyteti extends Component{
+export class Porosia extends Component{
 
     constructor(props){
         super(props);
 
         this.state={
-            qytetet:[],
+            porosite:[],
             modalTitle:"",
-            QytetiId:0,
-            QytetiName:""
-            
+            PorosiaId:"",
+            ObjektiName:0,
+            BleresiName:"",
+            BleresiEmail:"",
+            PorosiaKoment:""
         }
     }
 
     refreshList(){
-        fetch(variables.API_URL+'Qyteti')
+        fetch(variables.API_URL+'Porosia')
         .then(response=>response.json())
         .then(data=>{
-            this.setState({qytetet:data});
+            this.setState({porosite:data});
         });
     }
 
     componentDidMount(){
         this.refreshList();
     }
-
-    changeQytetiName =(e)=>{
-        this.setState({QytetiName:e.target.value});
+    changeObjektiName =(e)=>{
+        this.setState({ObjektiName:e.target.value});
+    }
+    changeBleresiName =(e)=>{
+        this.setState({BleresiName:e.target.value});
+    }
+    changeBleresiEmail =(e)=>{
+        this.setState({BleresiEmail:e.target.value});
+    }
+    changePorosiaKoment=(e)=>{
+        this.setState({PorosiaKoment:e.target.value});
     }
 
     
@@ -36,29 +46,37 @@ export class Qyteti extends Component{
 
     addClick(){
         this.setState({
-            modalTitle:"Add Qyteti",
-            QytetiId:0,
-            QytetiName:"",
+            modalTitle:"Add Porosia",
+            PorosiaId:"",
+            ObjektiName:0,
+            BleresiName:"",
+            BleresiEmail:"",
+            PorosiaKoment:""
         });
     }
 
-    editClick(q){
+    editClick(o){
         this.setState({
-            modalTitle:"Edit Qyteti",
-            QytetiId:q.QytetiId,
-            QytetiName:q.QytetiName,
+            modalTitle:"Edit Porosia",
+            PorosiaId:o.PorosiaId,
+            BleresiName:o.BleresiName,
+            BleresiEmail:o.BleresiEmail,
+            PorosiaKoment:o.PorosiaKoment
         });
     }
 
     createClick(){
-        fetch(variables.API_URL+'Qyteti',{
+        fetch(variables.API_URL+'Porosia',{
             method:'POST',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                QytetiName:this.state.QytetiName, 
+                ObjektiName:this.state.ObjektiName,
+                BleresiName:this.state.BleresiName,
+                BleresiEmail:this.state.BleresiEmail,
+                PorosiaKoment:this.state.PorosiaKoment
             })
         })
         .then(res=>res.json())
@@ -71,15 +89,18 @@ export class Qyteti extends Component{
     }
 
     updateClick(){
-        fetch(variables.API_URL+'Qyteti',{
+        fetch(variables.API_URL+'Porosia',{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                QytetiId:this.state.QytetiId,
-                QytetiName:this.state.QytetiName,
+                PorosiaId:this.state.PorosiaId,
+                ObjektiName:this.state.ObjektiName,
+                BleresiName:this.state.BleresiName,
+                BleresiEmail:this.state.BleresiEmail,
+                PorosiaKoment:this.state.PorosiaKoment
             })
         })
         .then(res=>res.json())
@@ -93,7 +114,7 @@ export class Qyteti extends Component{
 
     deleteClick(id){
         if(window.confirm('Are you sure?')){
-        fetch(variables.API_URL+'Qyteti/'+id,{
+        fetch(variables.API_URL+'Porosia/'+id,{
             method:'DELETE',
             headers:{
                 'Accept':'application/json',
@@ -113,10 +134,13 @@ export class Qyteti extends Component{
 
     render(){
         const {
-            qytetet,
+            porosite,
             modalTitle,
-            QytetiId,
-            QytetiName
+            PorosiaId,
+            ObjektiName,
+            BleresiName,
+            BleresiEmail,
+            PorosiaKoment
 
         }=this.state;
         return(
@@ -125,39 +149,52 @@ export class Qyteti extends Component{
 <button type="button" className="btn btn-primary m-2 float-end"
 data-bs-toggle="modal" data-bs-target="#exampleModal"
 onClick={()=>this.addClick()}>
-    Add Qyteti
+    Add Porosia
 </button>
     <table className="table table-striped">
     <thead>
         <tr>
             <th>
-            QytetiId
+            Id
             </th>
             <th>
-            QytetiName
+            ObjektiName
+            </th>
+            <th>
+            BleresiName
+            </th>
+            <th>
+            BleresiEmail
+            </th>
+            <th>
+            PorosiaKoment
             </th>
         </tr>
     </thead>
     <tbody>
-        {qytetet.map(q=>
-            <tr key={q.QytetiId}>
-                <td>{q.QytetiId}</td>
-                <td>{q.QytetiName}</td>
+        {porosite.map(o=>
+            <tr key={o.PorosiaId}>
+                <td>{o.PorosiaId}</td>
+                <td>{o.ObjektiName}</td>
+                <td>{o.BleresiName}</td>
+                <td>{o.BleresiEmail}</td>
+                <td>{o.PorosiaKoment}</td>
                 <td>
                 <button type="button" className="btn btn-light mr-1"
                 data-bs-toggle="modal" data-bs-target="#exampleModal"
-                onClick={()=>this.editClick(q)}>
+                onClick={()=>this.editClick(o)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
                 </button>
                 <button type="button" className="btn btn-light mr-1"
-                onClick={()=>this.deleteClick(q.QytetiId)}>
+                onClick={()=>this.deleteClick(o.PorosiaId)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                 </svg>
                 </button>
+                
                 </td>
             </tr>
             )}
@@ -177,22 +214,39 @@ onClick={()=>this.addClick()}>
 
     <div className="p-2 w-50 bd-highlight">
     <div className="input-group mb-3">
-        <span className="input-group-text">QytetiName</span>
+        <span className="input-group-text">ObjektiName</span>
         <input type="text" className="form-control"
-        value={QytetiName} onChange={this.changeQytetiName}/>
+        value={ObjektiName} onChange={this.changeObjektiName}/>
+    </div>
+    <div className="input-group mb-3">
+        <span className="input-group-text">BleresiName</span>
+        <input type="text" className="form-control"
+        value={BleresiName} onChange={this.changeBleresiName}/>
     </div>
     </div>
-
+    <div className="p-2 w-50 bd-highlight">
+    <div className="input-group mb-3">
+        <span className="input-group-text">PorosiaKoment</span>
+        <input type="text" className="form-control"
+        value={PorosiaKoment} onChange={this.changePorosiaKoment}/>
+    </div>
+    <div className="input-group mb-3">
+        <span className="input-group-text">BleresiEmail</span>
+        <input type="text" className="form-control"
+        value={BleresiEmail} onChange={this.changeBleresiEmail}/>
     </div>
     
-    {QytetiId==0?
+    </div>
+    </div>
+    
+    {PorosiaId==0?
     <button type="button" className="btn btn-primary float-start"
     onClick={()=>this.createClick()}>
         Create
     </button>:null
     }
 
-    {QytetiId!=0?
+    {PorosiaId!=0?
     <button type="button" className="btn btn-primary float-start"
     onClick={()=>this.updateClick()}>
         Update

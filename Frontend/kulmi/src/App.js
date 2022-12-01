@@ -17,6 +17,8 @@ import {Shitesi} from './Shitesi';
 import {Porosia} from './Porosia';
 import {Statusi} from './Statusi';
 import {Kontaktet} from './Kontaktet';
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
   return (
@@ -112,6 +114,8 @@ function App() {
 
       <Routes>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route path='/objekti' element={<Objekti/>}/>
         <Route path='/qyteti' element={<Qyteti/>}/>
         <Route path='/lagjja' element={<Lagjja/>}/>

@@ -1,6 +1,4 @@
-﻿
-
-using Kulmi.Models;
+﻿using Kulmi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;

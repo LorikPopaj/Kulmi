@@ -13,7 +13,9 @@ export class Bleresi extends Component{
             BleresiName:"",
             BleresiNrTel:"",
             BleresiEmail:"",
-            BleresiPassword:""
+            BleresiPassword:"",
+            BleresiPic:"",
+            ImgPath:variables.PHOTO_URL
         }
     }
 
@@ -41,6 +43,9 @@ export class Bleresi extends Component{
     changeBleresiPassword =(e)=>{
         this.setState({BleresiPassword:e.target.value});
     }
+    changeBleresiPic =(e)=>{
+        this.setState({BleresiPic:e.target.value});
+    }
 
     
 
@@ -52,7 +57,8 @@ export class Bleresi extends Component{
             BleresiName:"",
             BleresiEmail:"",
             BleresiNrTel:"",
-            BleresiPassword:""
+            BleresiPassword:"",
+            BleresiPic:""
         });
     }
 
@@ -63,7 +69,8 @@ export class Bleresi extends Component{
             BleresiName:o.BleresiName,
             BleresiNrTel:o.BleresiNrTel,
             BleresiEmail:o.BleresiEmail,
-            BleresiPassword:o.BleresiPassword
+            BleresiPassword:o.BleresiPassword,
+            BleresiPic:o.BleresiPic
         });
     }
 
@@ -78,7 +85,8 @@ export class Bleresi extends Component{
                 BleresiName:this.state.BleresiName,
                 BleresiNrTel:this.state.BleresiNrTel,
                 BleresiEmail:this.state.BleresiEmail,
-                BleresiPassword:this.state.BleresiPassword
+                BleresiPassword:this.state.BleresiPassword,
+                BleresiPic:this.state.BleresiPic
             })
         })
         .then(res=>res.json())
@@ -102,7 +110,8 @@ export class Bleresi extends Component{
                 BleresiName:this.state.BleresiName,
                 BleresiNrTel:this.state.BleresiNrTel,
                 BleresiEmail:this.state.BleresiEmail,
-                BleresiPassword:this.state.BleresiPassword
+                BleresiPassword:this.state.BleresiPassword,
+                BleresiPic:this.state.BleresiPic
             })
         })
         .then(res=>res.json())
@@ -142,8 +151,9 @@ export class Bleresi extends Component{
             BleresiName,
             BleresiEmail,
             BleresiNrTel,
-            BleresiPassword
-
+            BleresiPassword,
+            BleresiPic,
+            ImgPath
         }=this.state;
         return(
 <div>
@@ -171,6 +181,9 @@ onClick={()=>this.addClick()}>
             <th>
             Pw
             </th>
+            <th>
+            Pic
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -181,6 +194,8 @@ onClick={()=>this.addClick()}>
                 <td>{o.BleresiEmail}</td>
                 <td>{o.BleresiNrTel}</td>
                 <td>{o.BleresiPassword}</td>
+                <td>{o.BleresiPic}</td>
+
                 <td>
                 <button type="button" className="btn btn-light mr-1"
                 data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -237,6 +252,12 @@ onClick={()=>this.addClick()}>
         <input type="text" className="form-control"
         value={BleresiPassword} onChange={this.changeBleresiPassword}/>
     </div>
+ 
+    </div>
+    <div className="p-2 w-50 bd-highlight">
+        <img width="250px" height="250px" src={ImgPath+BleresiPic}/>
+        <input className="m-2" type="file" onChange={this.imageUpload}/> 
+        
     </div>
     </div>
     

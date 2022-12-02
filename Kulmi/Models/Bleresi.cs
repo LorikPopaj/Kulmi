@@ -7,6 +7,8 @@
         public string BleresiNrTel { get; set; }
         public string BleresiEmail { get; set; }
         public string BleresiPassword { get; set; }
+        public string BleresiPic { get; set; }
+
 
     }
 }
